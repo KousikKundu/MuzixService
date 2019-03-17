@@ -3,9 +3,11 @@ package com.stackroute.muzixservice.service;
 import com.stackroute.muzixservice.domain.Artist;
 import com.stackroute.muzixservice.domain.Image;
 import com.stackroute.muzixservice.domain.Track;
+import com.stackroute.muzixservice.exception.TrackAlreadyExistsException;
 import com.stackroute.muzixservice.repository.MuzixRepository;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -45,5 +47,12 @@ public class MuzixServiceTest {
         image = null;
         artist = null;
         track = null;
+    }
+
+    @Test
+    public void teatSaveTrackSuccess () throws TrackAlreadyExistsException {
+
+        when(muzixRepository.insert(track)).thenReturn(track);
+
     }
 }
