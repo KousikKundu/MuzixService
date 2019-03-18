@@ -28,9 +28,9 @@ public class MuzixRepositoryTest {
 
     @Before
     public void setUp(){
-        image = new Image( imageId: 1, imageUrl: "http:url" , imageSize="large");
-        artist = new Artist( artisId: 101, artistName: "Jonhn", url: "new url" ,image);
-        track = new Track( trackId: "Track1", trackName: "MyNewTracks",comments:"new comments", trackListeners: "123" , trackUrl: "new track url",artist);
+        image = new Image(  1, "http:url" , "large");
+        artist = new Artist( 101, "Jonhn",  "new url" ,image);
+        track = new Track( "Track1", "MyNewTracks","new track url", "123" , "new commets",artist);
     }
 
     @After
@@ -55,7 +55,7 @@ public class MuzixRepositoryTest {
         fetchTrack.setComments("updated comments");
         muzixRepository.save(fetchTrack);
         Track fetchTrackObj= muzixRepository.findById(track.getTrackId()).get();
-        Assert.assertEquals(expected: "updated comments",fetchTrackObj.getComments());
+        Assert.assertEquals("updated comments",fetchTrackObj.getComments());
     }
 
     @Test
@@ -69,12 +69,12 @@ public class MuzixRepositoryTest {
     @Test
     public void testGetAllTrack(){
         muzixRepository.insert(track);
-        Image image = new Image( imageId: 2, imageUrl: "http:url:another" , imageSize="lextraarge");
-        Artist artist = new Artist( artisId: 102, artistName: "Joanha", url: "new url" ,image);
-        track = new Track( trackId: "Track2", trackName: "MyAnotherNewTracks",comments:"new comments updated", trackListeners: "123" , trackUrl: "new track url",artist);
+        Image image = new Image( 2, "http:url:another" , "lextraarge");
+        Artist artist = new Artist( 102, "Joanha", "new url" ,image);
+        track = new Track( "Track2", "MyAnotherNewTracks","new track url", "123" ,  "new comment",artist);
         muzixRepository.insert(track);
         List<Track> list = muzixRepository.findAll();
-        Assert.assertEquals(expected: 2 , list.size());
-        Assert.assertEquals(expected: "Track2", list.get(1).getTrackId());
+        Assert.assertEquals(2 , list.size());
+        Assert.assertEquals("Track2", list.get(1).getTrackId());
     }
 }
