@@ -66,7 +66,7 @@ public class MuzixControllerTest {
     @Test
     public void testSaveTrackSuccess() throws Exception {
         when(muzixService.SaveTrackToWishList(any())).thenReturn(track);
-        mockMvc.perform(post("/api/v1/muzixservice/track")
+        mockMvc.perform(post("/api/muzixservice/track")
         .contentType(MediaType.APPLICATION_JSON)
         .content(jsonToString(track))).andExpect(status().isCreated()).andDo(print());
 
@@ -77,7 +77,7 @@ public class MuzixControllerTest {
     @Test
     public void testSaveTrackFailure() throws Exception {
         when(muzixService.SaveTrackToWishList(any())).thenThrow(TrackAlreadyExistsException.class);
-        mockMvc.perform(post("/api/v1/muzixservice/track")
+        mockMvc.perform(post("/api/muzixservice/track")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isConflict()).andDo(print());
 
@@ -87,8 +87,8 @@ public class MuzixControllerTest {
 
     @Test
     public void testUpdateCommentSuccess() throws Exception {
-        when(muzixService.updateCommentForTrack(track.getComments(),track.getTrackId())).thenReturn(track);
-        mockMvc.perform(post("/api/v1/muzixservice/track/Track2")
+        when(muzixService.updateCommentForTrack((track.getComments()),(track.getTrackId()))).thenReturn(track);
+        mockMvc.perform(post("/api/muzixservice/track/Track2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
@@ -99,7 +99,7 @@ public class MuzixControllerTest {
     @Test
     public void testDeleteTrack() throws Exception {
         when(muzixService.deleteTrackFromWishList(track.getTrackId())).thenReturn(true);
-        mockMvc.perform(post("/api/v1/muzixservice/track/Track2")
+        mockMvc.perform(post("/api/muzixservice/track/Track2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
@@ -110,7 +110,7 @@ public class MuzixControllerTest {
     @Test
     public void testGetAllTracks() throws Exception {
         when(muzixService.getAllTrackFromWishList()).thenReturn(trackList);
-        mockMvc.perform(post("/api/v1/muzixservice/tracks")
+        mockMvc.perform(post("/api/muzixservice/tracks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
