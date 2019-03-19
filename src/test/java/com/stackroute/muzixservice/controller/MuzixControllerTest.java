@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -88,7 +88,7 @@ public class MuzixControllerTest {
     @Test
     public void testUpdateCommentSuccess() throws Exception {
         when(muzixService.updateCommentForTrack((track.getComments()),(track.getTrackId()))).thenReturn(track);
-        mockMvc.perform(post("/api/muzixservice/track/Track2")
+        mockMvc.perform(put("/api/muzixservice/track/Track2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
@@ -99,7 +99,7 @@ public class MuzixControllerTest {
     @Test
     public void testDeleteTrack() throws Exception {
         when(muzixService.deleteTrackFromWishList(track.getTrackId())).thenReturn(true);
-        mockMvc.perform(post("/api/muzixservice/track/Track2")
+        mockMvc.perform(delete("/api/muzixservice/track/Track2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
@@ -110,7 +110,7 @@ public class MuzixControllerTest {
     @Test
     public void testGetAllTracks() throws Exception {
         when(muzixService.getAllTrackFromWishList()).thenReturn(trackList);
-        mockMvc.perform(post("/api/muzixservice/tracks")
+        mockMvc.perform(get("/api/muzixservice/tracks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 

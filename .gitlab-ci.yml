@@ -21,5 +21,7 @@ maven-build:
   script: "mvn package -U"
 
 artifacts:
+
   paths:
+    
     - target/*.jar
