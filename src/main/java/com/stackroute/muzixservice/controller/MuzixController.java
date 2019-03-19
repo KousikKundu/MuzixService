@@ -55,7 +55,7 @@ public class MuzixController {
     public ResponseEntity<?> updateTrackToWishList(@RequestBody Track track , @PathVariable("id") String id) throws TrackNotFoundException {
         try {
           Track updateTrack =   muzixService.updateCommentForTrack(track.getComments(),id);
-          responseEntity = new ResponseEntity(track, HttpStatus.CREATED);
+          responseEntity = new ResponseEntity(track, HttpStatus.OK);
         }catch (TrackNotFoundException e){
             throw new TrackNotFoundException();
         }catch (Exception e){
