@@ -1,0 +1,22 @@
+.mat-toolbar {
+  background-color: palevioletred;
+  height: 12vh;
+  display: flex;
+  padding-top: 1.5vh;
+}
+.image-class {
+  height: 70px;
+  margin-right: auto;
+}
+
+.mat-button{
+  font-family: 'Acme','sans-serif' ;
+  font-size: 1.2 em;
+}
+
+.mat-menu-item {
+  font-family: 'Acme','sans-serif' ;
+  font-size: 1.2 em;
+}
+
+

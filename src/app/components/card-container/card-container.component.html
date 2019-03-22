@@ -1,0 +1,14 @@
+<!-- <div *ngFor="let track of tracks">
+
+    {{track.name}} || {{track.artist.name}}
+    <img [src]= "track.artist.image.text">
+
+  </div> -->
+
+
+<div class="container">
+  <app-card
+  *ngFor="let track of tracks"
+  [track]= track >
+  </app-card>
+</div>
