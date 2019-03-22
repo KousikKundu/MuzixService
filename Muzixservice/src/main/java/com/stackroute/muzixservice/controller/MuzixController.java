@@ -46,7 +46,7 @@ public class MuzixController {
         }catch (TrackNotFoundException e){
             throw new TrackNotFoundException();
         }catch (Exception e){
-            responseEntity = new ResponseEntity<>("Error!!!Try after sometimes" , HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity<>("Eror!!!Try after sometimes" , HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
    }
@@ -55,7 +55,7 @@ public class MuzixController {
     public ResponseEntity<?> updateTrackToWishList(@RequestBody Track track , @PathVariable("id") String id) throws TrackNotFoundException {
         try {
           Track updateTrack =   muzixService.updateCommentForTrack(track.getComments(),id);
-          responseEntity = new ResponseEntity(updateTrack, HttpStatus.OK);
+          responseEntity = new ResponseEntity(track, HttpStatus.OK);
         }catch (TrackNotFoundException e){
             throw new TrackNotFoundException();
         }catch (Exception e){
