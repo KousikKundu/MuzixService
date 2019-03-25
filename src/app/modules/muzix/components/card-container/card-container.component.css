@@ -4,3 +4,20 @@
   justify-content: space-between;
   background-color: #222121;
 }
+
+.mat-form-field {
+  padding-left: 155vh;
+  padding-top: 10px;
+  color: #fff;
+}
+
+.input {
+  color: #fff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  color: #fff;
+}
+
+
+

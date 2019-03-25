@@ -13,6 +13,7 @@ import javax.websocket.server.PathParam;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("api/muzixservice")
 public class MuzixController {
 

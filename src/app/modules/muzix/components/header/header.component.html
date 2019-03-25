@@ -6,11 +6,11 @@
         <button class="mat-button" mat-button [matMenuTriggerFor]="menu">Track</button>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>India</button>
-          <button mat-menu-item>Spain</button>
+          <button class="mat-menu-item-india"  [routerLink]="['/India']" mat-menu-item>India</button>
+          <button class="mat-menu-item-spain"  [routerLink]="['/Spain']" mat-menu-item>Spain</button>
         </mat-menu>
 
-        <button mat-button>WhishList</button>
+        <button class="mat-btn-wishlist" [routerLink]="['/wishList']"  mat-button>WhishList</button>
 
     </mat-toolbar-row>
 </mat-toolbar>
