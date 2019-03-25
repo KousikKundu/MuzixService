@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class WishListComponent implements OnInit {
   tracks: Array<Track> ;
-  wishData: true;
+  wishData: boolean;
 
   constructor(
     private muzixService: MuzixService,
@@ -19,6 +19,7 @@ export class WishListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.wishData = true;
     const message = 'WishList is empty';
     this.muzixService.getAllTracksForWishList().subscribe( data => {
       this.tracks = data;
@@ -45,7 +46,10 @@ export class WishListComponent implements OnInit {
   updateComments(track) {
     this.muzixService.updateComments(track).subscribe(
       data => {
-        this.matSnackBar.open('Successfully updated', '' , {duration: 1000});
+        console.log('update data', data);
+        this.matSnackBar.open('Successfully updated', '' , {
+          duration: 1000
+        });
     },
     error => {
       console.log('error', error);

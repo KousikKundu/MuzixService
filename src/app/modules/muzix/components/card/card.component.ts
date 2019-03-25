@@ -31,7 +31,7 @@ export class CardComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    console.log('wishdata now', this.wishData);
   }
 
   addMyTrack(track) {
