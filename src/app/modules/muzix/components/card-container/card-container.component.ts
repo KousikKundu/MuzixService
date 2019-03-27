@@ -81,12 +81,13 @@ export class CardContainerComponent implements OnInit {
           });
         }
       },
-      // tslint:disable-next-line:no-shadowed-variable
       error => {
         this.errorStatus = `${error.status}`;
         const errorMsg = `${error.error.message}`;
-        this.statusCode = parseInt(this.errorStatus, 10);
-        if (this.statusCode === 400) {
+        console.log('erro msg', errorMsg ,'errorStatus' , this.errorStatus);
+       this.statusCode = parseInt(this.errorStatus, 10);
+       console.log('statusCode' , this.statusCode);
+        if (this.statusCode === 409) {
           this.matSnackBar.open(errorMsg, '', {
             duration: 1000
           });
