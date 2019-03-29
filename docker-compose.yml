@@ -1,0 +1,31 @@
+version : '3'
+services:
+  Spring:
+    image: triplekdock/muzixservicebackend:v1
+    restart: always
+    network_mode: host
+    container_name: spring-image
+    ports:
+        - 8083:8083
+    depends_on:
+      - mongo
+      
+
+  angular:
+    image: triplekdock/muzixservicefrontend:v1
+    network_mode: host
+    container_name: angular-docker
+    ports:
+        - 8080:8080
+
+  mongo:
+    image: mongo:3.2-jessie
+    ports:
+        - 27017:27017
+    container_name: mongo
+    network_mode: host
+    
+    
+
+
+
