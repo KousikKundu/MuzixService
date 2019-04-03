@@ -35,7 +35,8 @@
 	</dependencies>
 
 <modules>
-	<module>Muzixservice</module>
+	<module>authenticationservice</module>
+	<module>usertrackservice</module>
 </modules>
 
 </project>
