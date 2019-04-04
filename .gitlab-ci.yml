@@ -3,7 +3,6 @@ image: 'maven:3-jdk-8'
 stages:
 
   - test
-
   - build
 
 services:
@@ -14,17 +13,11 @@ services:
 variables:
 
   MYSQL_DATABASE: "UserDb"
-
   MYSQL_URL: "jdbc:mysql://mysql/UserDb"
-
-  MYSQL_USER: "app_root"
-
+  MYSQL_USER: "root"
   MYSQL_PASSWORD: "root"
-
   MYSQL_ROOT_PASSWORD: "root"
-
   MONGO_DATABASENAME: "muzixdb"
-
   MONGO_URL: "mongodb://mongo/muzixdb"
 
 cache:
@@ -32,19 +25,16 @@ cache:
   paths:
 
    - .m2/repository
-
    - target
 
 maven-test:
 
   stage: test
-
   script: "mvn test"
 
 maven-build:
 
   stage: build
-
   script: "mvn package"
 
   artifacts:
