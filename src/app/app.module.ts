@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 
 import { MuzixModule } from './modules/muzix/muzix.module' ;
+import { AuthenticationModule} from './modules/authentication/authentication.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     MuzixModule,
+    AuthenticationModule,
     HttpClientModule,
   ],
   providers: [],
