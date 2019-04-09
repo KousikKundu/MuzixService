@@ -1,18 +1,39 @@
 version : '3'
 services:
-  Spring:
-    image: triplekdock/muzixservicebackend:v1
+  authservice:
+    image: triplekdock/authenticationservice:v1
     restart: always
     network_mode: host
-    container_name: spring-image
+    container_name: authServiceCon
     ports:
-        - 8083:8083
+        - 8084:8084
+    depends_on:
+      - mysql
+      
+  userTrackService:
+    image: triplekdock/usertrackservice:v1
+    restart: always
+    network_mode: host
+    container_name: userTrackCon
+    ports:
+        - 8085:8085
     depends_on:
       - mongo
-      
+
+  mysql:
+    image: mysql:5.5
+    ports:
+        - 3306:3306
+    container_name: mysql_container
+    network_mode: host
+    environment:
+        MYSQL_ROOT_PASSWORD: root123
+        MYSQL_DATABASE: UserDb
+        MYSQL_USER: approot
+        MYSQL_PASSWORD: root123
 
   angular:
-    image: triplekdock/muzixservicefrontend:v1
+    image: triplekdock/muzixfrontendauthentication:v1
     network_mode: host
     container_name: angular-docker
     ports:
