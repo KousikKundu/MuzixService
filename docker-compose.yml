@@ -27,7 +27,7 @@ services:
     container_name: mysql_container
     network_mode: host
     environment:
-        MYSQL_ROOT_PASSWORD: root123
+        MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: UserDb
         MYSQL_USER: approot
         MYSQL_PASSWORD: root123
