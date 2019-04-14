@@ -1,3 +1,4 @@
+/*
 package com.stackroute.usertrackservice.config;
 
 import com.stackroute.usertrackservice.filter.JwtFilter;
@@ -17,3 +18,4 @@ public class BeanConfiguration {
         return filterRegistrationBean;
     }
 }
+*/

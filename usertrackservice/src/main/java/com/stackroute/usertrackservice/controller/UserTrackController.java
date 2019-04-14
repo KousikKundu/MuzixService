@@ -58,11 +58,11 @@ public class UserTrackController {
         return responseEntity;
     }
 
-    @DeleteMapping("/user/{userName}/track")
-    public ResponseEntity<?>  deleteUserTrackToWishList(@PathVariable("userName") String userName,@RequestBody Track track ) throws TrackNotFoundException {
+    @DeleteMapping("/user/{userName}/{trackID}")
+    public ResponseEntity<?>  deleteUserTrackToWishList(@PathVariable("userName") String userName,@PathVariable("trackID") String trackId) throws TrackNotFoundException {
 
         try {
-            User user = userTrackService.deleteUserTrackFromWishList(userName,track.getTrackId());
+            User user = userTrackService.deleteUserTrackFromWishList(userName,trackId);
             responseEntity = new ResponseEntity<User>(user, HttpStatus.OK);
         } catch (TrackNotFoundException e){
             throw new TrackNotFoundException();

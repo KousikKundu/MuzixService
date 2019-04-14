@@ -1,7 +1,7 @@
 version : '3'
 services:
   authservice:
-    image: triplekdock/authenticationservice:v1
+    image: triplekdock/authenticationservice:v2
     restart: always
     network_mode: host
     container_name: authServiceCon
@@ -9,9 +9,10 @@ services:
         - 8084:8084
     depends_on:
       - mysql
+      - eurekaServer
       
   userTrackService:
-    image: triplekdock/usertrackservice:v1
+    image: triplekdock/usertrackservice:v2
     restart: always
     network_mode: host
     container_name: userTrackCon
@@ -19,6 +20,33 @@ services:
         - 8085:8085
     depends_on:
       - mongo
+      - eurekaServer
+
+  eurekaServer:
+    image: triplekdock/eurekaserver:v1
+    restart: always
+    network_mode: host
+    container_name: eurekaServerCon
+    ports:
+        - 9003:9003 
+
+  zuulService:
+    image: triplekdock/zuulserver:v1
+    restart: always
+    network_mode: host
+    container_name: zuulServerCon
+    ports:
+        - 8086:8086   
+
+  orchestrationService:
+    image: triplekdock/orchestrationservice:v1
+    restart: always
+    network_mode: host
+    container_name: orchestrationServerCon
+    ports:
+        - 8888:8888
+    depends_on:
+      - eurekaServer     
 
   mysql:
     image: mysql:5.5
@@ -33,9 +61,9 @@ services:
         MYSQL_PASSWORD: root123
 
   angular:
-    image: triplekdock/muzixfrontendauthentication:v1
+    image: triplekdock/muzixfrontendauthentication:v2
     network_mode: host
-    container_name: angular-docker
+    container_name: angular-register
     ports:
         - 8080:8080
 
