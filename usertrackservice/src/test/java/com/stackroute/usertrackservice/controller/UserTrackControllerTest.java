@@ -105,7 +105,7 @@ public class UserTrackControllerTest {
     @Test
     public void testDeleteUserTrack() throws Exception {
         when(userTrackService.deleteUserTrackFromWishList(user.getUserName(),track.getTrackId())).thenReturn(user);
-        mockMvc.perform(delete("/api/usertrackservice/user/{userName}/track" , user.getUserName())
+        mockMvc.perform(delete("/api/usertrackservice/user/{userName}/{trackID}" , user.getUserName(),track.getTrackId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(track))).andExpect(status().isOk()).andDo(print());
 
