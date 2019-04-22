@@ -13,8 +13,9 @@ export class AuthenticationService {
   private springLoginEndpoint: string;
   constructor(private httpClient: HttpClient) { 
     //this.springEndPointRegister="http://localhost:8085/api/usertrackservice/" ;
-    this.springEndPointRegister="http://localhost:8086/orchestrationservice/api/user" ;
-    this.springEndPointSave="http://localhost:8084/api/userservice/";
+    //this.springEndPointRegister="http://localhost:8086/orchestrationservice/api/user" ;
+    this.springEndPointRegister="http://localhost:8086/usertrackservice/api/usertrackservice/register" ;
+    //this.springEndPointSave="http://localhost:8084/api/userservice/";
     this.springLoginEndpoint = "http://localhost:8086/authenticationservice/api/userservice/login";
   }
 

@@ -8,7 +8,8 @@ services:
       - 15672:15672
         
   authservice:
-    image: triplekdock/authenticationservice:v3
+    image: authservicefinal
+    build: authenticationservice/
     restart: always
     network_mode: host
     container_name: authServiceCon
@@ -22,7 +23,8 @@ services:
         test: "exit 0"
       
   userTrackService:
-    image: triplekdock/usertrackservice:v3
+    image: usertrackservicefinal
+    build: usertrackservice/
     restart: always
     network_mode: host
     container_name: userTrackCon
@@ -69,7 +71,8 @@ services:
 
 
   angular:
-    image: triplekdock/muzixfrontendauthentication:v3
+    image: frontendfinal
+    build: ./
     network_mode: host
     container_name: angular-register
     ports:

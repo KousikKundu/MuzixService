@@ -1,5 +1,7 @@
 package com.stackroute.usertrackservice.service;
 
+import com.stackroute.rabbitmq.domain.UserDTO;
+import com.stackroute.usertrackservice.config.Producer;
 import com.stackroute.usertrackservice.domain.Track;
 import com.stackroute.usertrackservice.domain.User;
 import com.stackroute.usertrackservice.exception.TrackAlreadyExistsException;
@@ -15,11 +17,13 @@ import java.util.List;
 @Service
 public class UserTrackServiceImpl implements UserTrackService {
 
+  private Producer producer;
   private UserTrackRepository userTrackRepository;
 
   @Autowired
-  public UserTrackServiceImpl(UserTrackRepository userTrackRepository) {
+  public UserTrackServiceImpl(UserTrackRepository userTrackRepository, Producer producer) {
     this.userTrackRepository = userTrackRepository;
+    this.producer = producer;
   }
 
   @Override
@@ -39,13 +43,29 @@ public class UserTrackServiceImpl implements UserTrackService {
 
       fetchedTracks.add(track);
       fetchedUserObj.setTrackList(fetchedTracks);
+      UserDTO userDTO = new UserDTO();
+      userDTO.setUserName(userName);
+      userDTO.setEmail(fetchedUserObj.getEmail());
+      List list = new ArrayList();
+      list.add(fetchedTracks);
+      userDTO.setTrackList(list);
       userTrackRepository.save(fetchedUserObj);
+      producer.sendToRabbitMqTrackObj(userDTO);
     }else {
 
       fetchedTracks = new ArrayList<Track>();
       fetchedTracks.add(track);
       fetchedUserObj.setTrackList(fetchedTracks);
+
+      UserDTO userDTO = new UserDTO();
+      userDTO.setUserName(userName);
+      userDTO.setEmail(fetchedUserObj.getEmail());
+      List list = new ArrayList();
+      list.add(fetchedTracks);
+      userDTO.setTrackList(list);
+
       userTrackRepository.save(fetchedUserObj);
+      producer.sendToRabbitMqTrackObj(userDTO);
     }
     return fetchedUserObj;
   }
@@ -106,12 +126,17 @@ public class UserTrackServiceImpl implements UserTrackService {
 
   @Override
   public User registerUser(User user) throws UserAlreadyExistsException {
+    UserDTO userDTO = new UserDTO();
+    userDTO.setUserName(user.getUserName());
+    userDTO.setEmail(user.getEmail());
+    userDTO.setPassword(user.getPassword());
     User fetchedUserObj = userTrackRepository.findByUserName(user.getUserName());
     if(fetchedUserObj != null ) {
       throw new UserAlreadyExistsException();
     }
     else{
       userTrackRepository.save(user) ;
+      producer.sendMessageToRabbitMq(userDTO);
     }
     return user;
   }
